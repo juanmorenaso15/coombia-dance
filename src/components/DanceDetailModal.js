@@ -6,7 +6,8 @@ import {
     Modal,
     ScrollView,
     TouchableOpacity,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Image
 } from 'react-native';
 
 export const DanceDetailModal = ({ visible, dance, onClose }) => {
@@ -24,7 +25,13 @@ export const DanceDetailModal = ({ visible, dance, onClose }) => {
                     <TouchableWithoutFeedback>
                         <View style={styles.modalContainer}>
                             <View style={styles.header}>
-                                <Text style={styles.emoji}>{dance.image}</Text>
+                                <View style={styles.headerImageContainer}>
+                                    <Image 
+                                        source={dance.image} 
+                                        style={styles.headerImage}
+                                        resizeMode="cover"
+                                    />
+                                </View>
                                 <Text style={styles.title}>{dance.name}</Text>
                                 <TouchableOpacity style={styles.closeButton} onPress={onClose}>
                                     <Text style={styles.closeText}>✕</Text>
@@ -100,9 +107,16 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#E2E8F0',
     },
-    emoji: {
-        fontSize: 32,
+    headerImageContainer: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        overflow: 'hidden',
         marginRight: 12,
+    },
+    headerImage: {
+        width: 50,
+        height: 50,
     },
     title: {
         flex: 1,

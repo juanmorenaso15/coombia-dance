@@ -42,7 +42,7 @@ La aplicación contribuye a:
 
 ---
 
-## 🛠 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **React Native** - Framework para desarrollo móvil
 - **Expo** - Plataforma para desarrollo y despliegue

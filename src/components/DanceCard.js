@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 export const DanceCard = ({ dance, onPress, onToggleFavorite }) => {
     return (
@@ -9,8 +9,12 @@ export const DanceCard = ({ dance, onPress, onToggleFavorite }) => {
             activeOpacity={0.7}
         >
             <View style={styles.header}>
-                <View style={styles.iconContainer}>
-                    <Text style={styles.icon}>{dance.image}</Text>
+                <View style={styles.imageContainer}>
+                    <Image 
+                        source={dance.image} 
+                        style={styles.image}
+                        resizeMode="cover"
+                    />
                 </View>
                 <View style={styles.info}>
                     <Text style={styles.name}>{dance.name}</Text>
@@ -54,17 +58,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 8,
     },
-    iconContainer: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
+    imageContainer: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
         backgroundColor: '#F8FAFC',
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
     },
-    icon: {
-        fontSize: 24,
+    image: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
     },
     info: {
         flex: 1,

@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 export const SearchBar = ({ value, onChangeText, placeholder = 'Buscar danza...' }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.searchIcon}>🔍</Text>
+            <Image 
+                source={require('../../assets/images/icons/search.png')} 
+                style={styles.searchIcon}
+                resizeMode="contain"
+            />
             <TextInput
                 style={styles.input}
                 placeholder={placeholder}
@@ -14,7 +18,11 @@ export const SearchBar = ({ value, onChangeText, placeholder = 'Buscar danza...'
             />
             {value.length > 0 && (
                 <TouchableOpacity onPress={() => onChangeText('')} style={styles.clearButton}>
-                    <Text style={styles.clearIcon}>✕</Text>
+                    <Image 
+                        source={require('../../assets/images/icons/close.png')} 
+                        style={styles.clearIcon}
+                        resizeMode="contain"
+                    />
                 </TouchableOpacity>
             )}
         </View>
@@ -38,8 +46,10 @@ const styles = StyleSheet.create({
         elevation: 1,
     },
     searchIcon: {
-        fontSize: 16,
+        width: 20,
+        height: 20,
         marginRight: 8,
+        tintColor: '#64748B',
     },
     input: {
         flex: 1,
@@ -51,7 +61,8 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     clearIcon: {
-        fontSize: 16,
-        color: '#94A3B8',
+        width: 20,
+        height: 20,
+        tintColor: '#94A3B8',
     },
 });

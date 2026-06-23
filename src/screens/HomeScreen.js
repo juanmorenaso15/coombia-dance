@@ -45,7 +45,7 @@ export const HomeScreen = () => {
     const getRandomDance = () => {
         if (filteredDances.length === 0) return;
         const random = filteredDances[Math.floor(Math.random() * filteredDances.length)];
-        alert(`🎲 Danza Aleatoria:\n\n${random.name}\n${random.description}`);
+        alert(`Danza Aleatoria:\n\n${random.name}\n${random.description}`);
     };
 
     if (loading) {
@@ -59,7 +59,7 @@ export const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Header title="💃 Colombia Dance" />
+            <Header title=" Colombia Dance" />
 
             <View style={styles.content}>
                 <SearchBar
@@ -92,7 +92,7 @@ export const HomeScreen = () => {
 
                 {/* Botón de Danza Aleatoria */}
                 <TouchableOpacity style={styles.randomButton} onPress={getRandomDance}>
-                    <Text style={styles.randomText}>🎲 Danza Aleatoria</Text>
+                    <Text style={styles.randomText}> Danza Aleatoria</Text>
                 </TouchableOpacity>
 
                 {filteredDances.length === 0 ? (
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
     },
     randomButton: {
-        backgroundColor: '#8B5CF6',
+        backgroundColor: '#7287e6',
         borderRadius: 12,
         paddingVertical: 12,
         alignItems: 'center',

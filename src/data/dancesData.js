@@ -7,10 +7,9 @@ export const dancesData = [
         history: 'Nació en los pueblos costeros como una expresión de alegría y resistencia cultural. Originalmente se bailaba con velas encendidas.',
         instruments: ['Tambora', 'Gaita', 'Maracas', 'Flauta de millo'],
         difficulty: 'Intermedio',
-        image: '🎵',
+        image: require('../../assets/images/dances/cumbia.png'),
         colors: ['#FF6B35', '#FFD700'],
         favorite: false,
-        videoUrl: 'https://www.youtube.com/embed/...',
         steps: ['Paso básico lateral', 'Giro de la pareja', 'Zapateo característico']
     },
     {
@@ -21,7 +20,7 @@ export const dancesData = [
         history: 'Surgió en el siglo XIX en los departamentos de Huila y Tolima como una expresión del sentimiento campesino.',
         instruments: ['Tiple', 'Guitarra', 'Flauta', 'Bandola'],
         difficulty: 'Avanzado',
-        image: '🎶',
+        image: require('../../assets/images/dances/bambuco.png'),
         colors: ['#2E86AB', '#F9A825'],
         favorite: false,
         steps: ['Paseo', 'Contrapaseo', 'Giros tradicionales']
@@ -34,7 +33,7 @@ export const dancesData = [
         history: 'Nació en las extensas llanuras de Colombia y Venezuela como expresión del trabajo y la vida en el campo.',
         instruments: ['Arpa', 'Cuatro', 'Maracas', 'Bandola llanera'],
         difficulty: 'Avanzado',
-        image: '🤠',
+        image: require('../../assets/images/dances/joropo.png'),
         colors: ['#D4A373', '#6B4F3C'],
         favorite: false,
         steps: ['Zapateo', 'Escobillado', 'Paseo llanero']
@@ -47,7 +46,7 @@ export const dancesData = [
         history: 'Tiene sus raíces en las comunidades afrodescendientes del Caribe colombiano, especialmente en Barranquilla.',
         instruments: ['Tambor', 'Maracas', 'Guache', 'Drum'],
         difficulty: 'Experto',
-        image: '🥁',
+        image: require('../../assets/images/dances/mapale.png'),
         colors: ['#E63946', '#F1FAEE'],
         favorite: false,
         steps: ['Movimiento de cadera', 'Sacudida de hombros', 'Pasos rápidos']
@@ -60,7 +59,7 @@ export const dancesData = [
         history: 'Nació como una adaptación del vals europeo en el siglo XIX, adoptando características propias de la región andina.',
         instruments: ['Guitarra', 'Piano', 'Violín', 'Tiple'],
         difficulty: 'Intermedio',
-        image: '💃',
+        image: require('../../assets/images/dances/pasillo.png'),
         colors: ['#7B2CBF', '#FF9E00'],
         favorite: false,
         steps: ['Vals', 'Giros suaves', 'Paseo elegante']
@@ -73,7 +72,7 @@ export const dancesData = [
         history: 'Originario de las comunidades afro del Pacífico, especialmente en los departamentos de Chocó y Valle del Cauca.',
         instruments: ['Marimba', 'Cununo', 'Tambora', 'Guasá'],
         difficulty: 'Intermedio',
-        image: '🌊',
+        image: require('../../assets/images/dances/currulao.png'),
         colors: ['#1A936F', '#F3A712'],
         favorite: false,
         steps: ['Paseo', 'Contrapaseo', 'Giro característico']
@@ -86,7 +85,7 @@ export const dancesData = [
         history: 'Es una danza de pareja que simboliza el torbellino de la vida y la naturaleza en los paisajes andinos.',
         instruments: ['Tiple', 'Guitarra', 'Requinto'],
         difficulty: 'Avanzado',
-        image: '🌀',
+        image: require('../../assets/images/dances/torbellino.png'),
         colors: ['#2D6A4F', '#D4A373'],
         favorite: false,
         steps: ['Giros rápidos', 'Zapateo', 'Enlazamiento']
@@ -99,7 +98,7 @@ export const dancesData = [
         history: 'Es el baile símbolo del Festival Folclórico del San Juan y San Pedro en Neiva, con más de 50 años de tradición.',
         instruments: ['Tiple', 'Guitarra', 'Bandola', 'Tambora'],
         difficulty: 'Intermedio',
-        image: '🌺',
+        image: require('../../assets/images/dances/sanjuanero.png'),
         colors: ['#E63946', '#F4A261'],
         favorite: false,
         steps: ['Paseo', 'Giro', 'Contragiro']
