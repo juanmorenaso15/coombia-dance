@@ -10,7 +10,7 @@ Aplicación móvil para explorar y aprender sobre las danzas tradicionales de Co
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/eae98b73-ea10-421e-a763-d4b97cac8533)
 
 **Enlace directo:**  
-https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/8282ec40-a51a-4ebf-b414-61694f617015
+https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/eae98b73-ea10-421e-a763-d4b97cac8533
 
 **Escanea el código QR con tu celular** para descargar e instalar la app directamente.
 
