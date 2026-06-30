@@ -116,7 +116,7 @@ npx expo start
 
 ## Figma
 
-Enlace figma: https://www.figma.com/proto/VneSy41eDXPY49GigcyQra/Sin-t%C3%ADtulo?node-id=0-1&t=700flmrWbKVMPvUZ-1
+Enlace figma: https://www.figma.com/design/VneSy41eDXPY49GigcyQra/Sin-t%C3%ADtulo?t=zG4xff9cwCnOZEEM-1
 
 
 ---
