@@ -113,6 +113,12 @@ npx expo start
 
 5. **Escanea el código QR con Expo Go**
 
+
+## Figma
+
+Enlace figma: https://www.figma.com/proto/VneSy41eDXPY49GigcyQra/Sin-t%C3%ADtulo?node-id=0-1&t=700flmrWbKVMPvUZ-1
+
+
 ---
 ## Autor
 
