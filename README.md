@@ -74,21 +74,6 @@ La aplicación contribuye a:
 
 ---
 
-## Danzas Incluidas
-
-| # | Danza | Región | Dificultad |
-|---|-------|--------|------------|
-| 1 | Cumbia | Caribe | Intermedio |
-| 2 | Bambuco | Andina | Avanzado |
-| 3 | Joropo | Llanos Orientales | Avanzado |
-| 4 | Mapalé | Caribe | Experto |
-| 5 | Pasillo | Andina | Intermedio |
-| 6 | Currulao | Pacífica | Intermedio |
-| 7 | Torbellino | Andina | Avanzado |
-| 8 | Sanjuanero | Andina | Intermedio |
-
----
-
 ## Instalación de la App
 
 ### En Android (APK)
@@ -128,8 +113,9 @@ npx expo start
 
 5. **Escanea el código QR con Expo Go**
 
-### Autor
+---
+## Autor
 
-Juan Moreno
+### Juan Moreno
 
 GitHub: [@juanmorenaso15](https://github.com/juanmorenaso15)
