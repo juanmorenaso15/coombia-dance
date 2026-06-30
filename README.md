@@ -128,3 +128,8 @@ npx expo start
 
 5. **Escanea el código QR con Expo Go**
 
+### Autor
+
+Juan Moreno
+
+GitHub: [@juanmorenaso15](https://github.com/juanmorenaso15)

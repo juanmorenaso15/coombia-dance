@@ -7,7 +7,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-// Importamos el SafeAreaView para proteger los bordes de la barra de estado
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from '../components/Header';
 import { DanceCard } from '../components/DanceCard';
@@ -21,7 +21,7 @@ export const HomeScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('Todas');
 
-    // Toggle favorito
+
     const toggleFavorite = (id) => {
         setDances(prev =>
             prev.map(dance =>
@@ -30,7 +30,7 @@ export const HomeScreen = () => {
         );
     };
 
-    // Filtrar danzas
+
     const filteredDances = dances.filter(dance => {
         const matchesSearch = dance.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             dance.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -38,12 +38,12 @@ export const HomeScreen = () => {
         return matchesSearch && matchesRegion;
     });
 
-    // Calcular estadísticas
+
     const total = filteredDances.length;
     const favorites = filteredDances.filter(d => d.favorite).length;
     const regions = [...new Set(filteredDances.map(d => d.region))];
 
-    // Danza aleatoria
+
     const getRandomDance = () => {
         if (filteredDances.length === 0) return;
         const random = filteredDances[Math.floor(Math.random() * filteredDances.length)];
@@ -60,7 +60,7 @@ export const HomeScreen = () => {
     }
 
     return (
-        // Cambiamos el View externo por SafeAreaView para evitar que choque con la hora y la batería
+
         <SafeAreaView style={styles.container}>
             <Header title=" Colombia Dance" />
 
@@ -70,7 +70,6 @@ export const HomeScreen = () => {
                     onChangeText={setSearchQuery}
                 />
 
-                {/* Estadísticas */}
                 <View style={styles.statsContainer}>
                     <View style={styles.statItem}>
                         <Text style={styles.statNumber}>{total}</Text>
@@ -93,7 +92,7 @@ export const HomeScreen = () => {
                     onSelectRegion={setSelectedRegion}
                 />
 
-                {/* Botón de Danza Aleatoria */}
+    
                 <TouchableOpacity style={styles.randomButton} onPress={getRandomDance}>
                     <Text style={styles.randomText}> Danza Aleatoria</Text>
                 </TouchableOpacity>
@@ -112,7 +111,7 @@ export const HomeScreen = () => {
                             <DanceCard
                                 dance={item}
                                 onPress={() => {
-                                    // Mostrar detalle en alert
+                                
                                     const instruments = item.instruments.join(', ');
                                     alert(
                                         `📖 ${item.name}\n\n` +
@@ -132,7 +131,7 @@ export const HomeScreen = () => {
                 )}
             </View>
 
-            {/* Contador de favoritos */}
+
             <View style={styles.favCounter}>
                 <Text style={styles.favText}>❤️ {dances.filter(d => d.favorite).length}</Text>
             </View>
@@ -143,7 +142,7 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF', // Ponemos el contenedor base blanco para que combine limpio con tu Header
+        backgroundColor: '#FFFFFF',
     },
     loadingContainer: {
         flex: 1,
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 20,
         paddingTop: 16,
-        backgroundColor: '#F8FAFC', // Mantenemos el fondo gris claro para el cuerpo de la app
+        backgroundColor: '#F8FAFC',
     },
     statsContainer: {
         flexDirection: 'row',
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
     },
     randomButton: {
-        backgroundColor: '#7287e6', // Conservamos exactamente tu color de botón original
+        backgroundColor: '#7287e6',
         borderRadius: 12,
         paddingVertical: 12,
         alignItems: 'center',

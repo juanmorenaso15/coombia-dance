@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+// Importamos los iconos vectoriales oficiales de Expo
+import { Ionicons } from '@expo/vector-icons';
 
 export const SearchBar = ({ value, onChangeText, placeholder = 'Buscar danza...' }) => {
     return (
         <View style={styles.container}>
-            <Image 
-                source={require('../../assets/images/icons/search.jpg')} 
-                style={styles.searchIcon}
-                resizeMode="contain"
+            {/* Reemplazamos la imagen de la lupa por un icono vectorial limpio */}
+            <Ionicons 
+                name="search" 
+                size={20} 
+                color="#64748B" 
+                style={styles.searchIcon} 
             />
+            
             <TextInput
                 style={styles.input}
                 placeholder={placeholder}
@@ -16,12 +21,14 @@ export const SearchBar = ({ value, onChangeText, placeholder = 'Buscar danza...'
                 value={value}
                 onChangeText={onChangeText}
             />
+            
             {value.length > 0 && (
                 <TouchableOpacity onPress={() => onChangeText('')} style={styles.clearButton}>
-                    <Image 
-                        source={require('../../assets/images/icons/close.jpg')} 
-                        style={styles.clearIcon}
-                        resizeMode="contain"
+                    {/* Reemplazamos la imagen de cerrar por un icono de X estilizado */}
+                    <Ionicons 
+                        name="close-circle" 
+                        size={20} 
+                        color="#94A3B8" 
                     />
                 </TouchableOpacity>
             )}
@@ -46,10 +53,7 @@ const styles = StyleSheet.create({
         elevation: 1,
     },
     searchIcon: {
-        width: 20,
-        height: 20,
         marginRight: 8,
-        tintColor: '#64748B',
     },
     input: {
         flex: 1,
@@ -59,10 +63,5 @@ const styles = StyleSheet.create({
     },
     clearButton: {
         padding: 4,
-    },
-    clearIcon: {
-        width: 20,
-        height: 20,
-        tintColor: '#000000',
     },
 });
