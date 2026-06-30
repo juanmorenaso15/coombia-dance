@@ -5,14 +5,17 @@ import {
     FlatList,
     ActivityIndicator,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Modal,
+    Image
 } from 'react-native';
-
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from '../components/Header';
 import { DanceCard } from '../components/DanceCard';
+import { DanceDetailModal } from '../components/DanceDetailModal';
 import { SearchBar } from '../components/SearchBar';
 import { FilterButtons } from '../components/FilterButtons';
+import { SortButtons } from '../components/SortButtons';
 import { dancesData } from '../data/dancesData';
 
 export const HomeScreen = () => {
@@ -20,7 +23,10 @@ export const HomeScreen = () => {
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('Todas');
-
+    const [selectedSort, setSelectedSort] = useState('default');
+    const [selectedDance, setSelectedDance] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [favoritesModalVisible, setFavoritesModalVisible] = useState(false);
 
     const toggleFavorite = (id) => {
         setDances(prev =>
@@ -30,7 +36,6 @@ export const HomeScreen = () => {
         );
     };
 
-
     const filteredDances = dances.filter(dance => {
         const matchesSearch = dance.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             dance.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -38,16 +43,33 @@ export const HomeScreen = () => {
         return matchesSearch && matchesRegion;
     });
 
+    const getFilteredBySort = (dancesList) => {
+        if (selectedSort === 'favorites') {
+            return dancesList.filter(dance => dance.favorite === true);
+        }
+        return dancesList;
+    };
+
+    const filteredBySearchAndRegion = filteredDances;
+    const filteredByFavorites = getFilteredBySort(filteredBySearchAndRegion);
+    const sortedDances = filteredByFavorites;
 
     const total = filteredDances.length;
     const favorites = filteredDances.filter(d => d.favorite).length;
     const regions = [...new Set(filteredDances.map(d => d.region))];
 
+    const favoriteDances = dances.filter(dance => dance.favorite === true);
 
     const getRandomDance = () => {
-        if (filteredDances.length === 0) return;
-        const random = filteredDances[Math.floor(Math.random() * filteredDances.length)];
-        alert(`Danza Aleatoria:\n\n${random.name}\n${random.description}`);
+        if (sortedDances.length === 0) return;
+        const random = sortedDances[Math.floor(Math.random() * sortedDances.length)];
+        setSelectedDance(random);
+        setModalVisible(true);
+    };
+
+    const openDanceDetail = (dance) => {
+        setSelectedDance(dance);
+        setModalVisible(true);
     };
 
     if (loading) {
@@ -60,7 +82,6 @@ export const HomeScreen = () => {
     }
 
     return (
-
         <SafeAreaView style={styles.container}>
             <Header title=" Colombia Dance" />
 
@@ -92,36 +113,36 @@ export const HomeScreen = () => {
                     onSelectRegion={setSelectedRegion}
                 />
 
-    
-                <TouchableOpacity style={styles.randomButton} onPress={getRandomDance}>
-                    <Text style={styles.randomText}> Danza Aleatoria</Text>
-                </TouchableOpacity>
+                <View style={styles.divider} />
 
-                {filteredDances.length === 0 ? (
+                <SortButtons
+                    selectedSort={selectedSort}
+                    onSelectSort={setSelectedSort}
+                />
+
+                {selectedSort !== 'favorites' && (
+                    <TouchableOpacity style={styles.randomButton} onPress={getRandomDance}>
+                        <Text style={styles.randomText}>Danza Aleatoria</Text>
+                    </TouchableOpacity>
+                )}
+
+                {sortedDances.length === 0 ? (
                     <View style={styles.emptyContainer}>
-                        <Text style={styles.emptyEmoji}>💔</Text>
                         <Text style={styles.emptyText}>No encontramos danzas</Text>
-                        <Text style={styles.emptySubtext}>Prueba con otra búsqueda o filtro</Text>
+                        <Text style={styles.emptySubtext}>
+                            {selectedSort === 'favorites'
+                                ? 'No tienes danzas favoritas aún. ❤️'
+                                : 'Prueba con otra búsqueda o filtro'}
+                        </Text>
                     </View>
                 ) : (
                     <FlatList
-                        data={filteredDances}
+                        data={sortedDances}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <DanceCard
                                 dance={item}
-                                onPress={() => {
-                                
-                                    const instruments = item.instruments.join(', ');
-                                    alert(
-                                        `📖 ${item.name}\n\n` +
-                                        `📍 Región: ${item.region}\n` +
-                                        `📊 Dificultad: ${item.difficulty}\n\n` +
-                                        `${item.description}\n\n` +
-                                        `🎵 Instrumentos: ${instruments}\n\n` +
-                                        `💃 Pasos: ${item.steps.join(', ')}`
-                                    );
-                                }}
+                                onPress={() => openDanceDetail(item)}
                                 onToggleFavorite={toggleFavorite}
                             />
                         )}
@@ -131,10 +152,80 @@ export const HomeScreen = () => {
                 )}
             </View>
 
-
-            <View style={styles.favCounter}>
+            <TouchableOpacity 
+                style={styles.favCounter} 
+                onPress={() => setFavoritesModalVisible(true)}
+                activeOpacity={0.8}
+            >
                 <Text style={styles.favText}>❤️ {dances.filter(d => d.favorite).length}</Text>
-            </View>
+            </TouchableOpacity>
+
+            {/* Modal de Favoritos */}
+            <Modal
+                visible={favoritesModalVisible}
+                transparent={true}
+                animationType="slide"
+                onRequestClose={() => setFavoritesModalVisible(false)}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalContent}>
+                        {/* Header del Modal */}
+                        <View style={styles.modalHeader}>
+                            <Text style={styles.modalTitle}>❤️ Danzas Favoritas</Text>
+                            <TouchableOpacity 
+                                onPress={() => setFavoritesModalVisible(false)}
+                                style={styles.closeButton}
+                            >
+                                <Text style={styles.closeButtonText}>✕</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {/* Contenido del Modal */}
+                        {favoriteDances.length === 0 ? (
+                            <View style={styles.emptyFavoritesContainer}>
+                                <Text style={styles.emptyFavoritesText}>No tienes danzas favoritas</Text>
+                                <Text style={styles.emptyFavoritesSubtext}>
+                                    ¡Explora y encuentra tu danza favorita!
+                                </Text>
+                            </View>
+                        ) : (
+                            <FlatList
+                                data={favoriteDances}
+                                keyExtractor={(item) => item.id}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity
+                                        style={styles.favoriteItem}
+                                        onPress={() => {
+                                            setFavoritesModalVisible(false);
+                                            setSelectedDance(item);
+                                            setModalVisible(true);
+                                        }}
+                                        activeOpacity={0.7}
+                                    >
+                                        <Image 
+                                            source={item.image} 
+                                            style={styles.favoriteImage}
+                                            resizeMode="cover"
+                                        />
+                                        <View style={styles.favoriteInfo}>
+                                            <Text style={styles.favoriteName}>{item.name}</Text>
+                                            <Text style={styles.favoriteRegion}>{item.region}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                )}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={styles.favoritesList}
+                            />
+                        )}
+                    </View>
+                </View>
+            </Modal>
+
+            <DanceDetailModal
+                visible={modalVisible}
+                dance={selectedDance}
+                onClose={() => setModalVisible(false)}
+            />
         </SafeAreaView>
     );
 };
@@ -210,12 +301,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#94A3B8',
         marginTop: 4,
+        textAlign: 'center',
     },
     listContent: {
         paddingBottom: 80,
     },
     randomButton: {
-        backgroundColor: '#7287e6',
+        backgroundColor: '#5aa0da',
         borderRadius: 12,
         paddingVertical: 12,
         alignItems: 'center',
@@ -244,5 +336,103 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '600',
+    },
+    divider: {
+        height: 3,
+        backgroundColor: '#E2E8F0',
+        marginVertical: 15,
+        marginHorizontal: 7,
+    },
+    // Modal de Favoritos
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'flex-end',
+    },
+    modalContent: {
+        backgroundColor: '#FFFFFF',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        maxHeight: '80%',
+        minHeight: '40%',
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: '#E2E8F0',
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#0F172A',
+    },
+    closeButton: {
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: '#F1F5F9',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    closeButtonText: {
+        fontSize: 18,
+        color: '#64748B',
+        fontWeight: '600',
+    },
+    favoritesList: {
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+    },
+    favoriteItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#F8FAFC',
+        borderRadius: 12,
+        marginBottom: 12,
+        padding: 12,
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
+    },
+    favoriteImage: {
+        width: 60,
+        height: 60,
+        borderRadius: 10,
+        marginRight: 12,
+    },
+    favoriteInfo: {
+        flex: 1,
+    },
+    favoriteName: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#0F172A',
+        marginBottom: 2,
+    },
+    favoriteRegion: {
+        fontSize: 14,
+        color: '#64748B',
+    },
+    emptyFavoritesContainer: {
+        paddingVertical: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    emptyFavoritesEmoji: {
+        fontSize: 48,
+        marginBottom: 16,
+    },
+    emptyFavoritesText: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#334155',
+    },
+    emptyFavoritesSubtext: {
+        fontSize: 14,
+        color: '#94A3B8',
+        marginTop: 4,
     },
 });

@@ -41,10 +41,10 @@ export const DanceDetailModal = ({ visible, dance, onClose }) => {
                             <ScrollView style={styles.content}>
                                 <View style={styles.badgeContainer}>
                                     <View style={[styles.badge, { backgroundColor: '#E8F5E9' }]}>
-                                        <Text style={styles.badgeText}>📍 {dance.region}</Text>
+                                        <Text style={styles.badgeText}>{dance.region}</Text>
                                     </View>
                                     <View style={[styles.badge, { backgroundColor: '#FFF3E0' }]}>
-                                        <Text style={styles.badgeText}>📊 {dance.difficulty}</Text>
+                                        <Text style={styles.badgeText}>{dance.difficulty}</Text>
                                     </View>
                                 </View>
 

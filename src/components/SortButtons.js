@@ -1,28 +1,31 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const regions = ['Todas', 'Caribe', 'Andina', 'Pacífica', 'Llanos Orientales'];
+const sortOptions = [
+    { key: 'default', label: 'Todas' },
+    { key: 'favorites', label: '❤️ Favoritas' },
+];
 
-export const FilterButtons = ({ selectedRegion, onSelectRegion }) => {
+export const SortButtons = ({ selectedSort, onSelectSort }) => {
     return (
         <View style={styles.container}>
-            {regions.map((region) => (
+            {sortOptions.map((option) => (
                 <TouchableOpacity
-                    key={region}
+                    key={option.key}
                     style={[
                         styles.button,
-                        selectedRegion === region && styles.buttonActive,
+                        selectedSort === option.key && styles.buttonActive,
                     ]}
-                    onPress={() => onSelectRegion(region)}
+                    onPress={() => onSelectSort(option.key)}
                     activeOpacity={0.7}
                 >
                     <Text
                         style={[
                             styles.buttonText,
-                            selectedRegion === region && styles.buttonTextActive,
+                            selectedSort === option.key && styles.buttonTextActive,
                         ]}
                     >
-                        {region}
+                        {option.label}
                     </Text>
                 </TouchableOpacity>
             ))}
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginBottom: 16,
+        marginBottom: 12,
         gap: 8,
     },
     button: {

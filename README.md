@@ -7,7 +7,7 @@ Aplicación móvil para explorar y aprender sobre las danzas tradicionales de Co
 ## Descarga la App
 
 ### APK para Android
-[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/8282ec40-a51a-4ebf-b414-61694f617015)
+[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/eae98b73-ea10-421e-a763-d4b97cac8533)
 
 **Enlace directo:**  
 https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/8282ec40-a51a-4ebf-b414-61694f617015
@@ -96,7 +96,7 @@ La aplicación contribuye a:
 1. **Descarga el APK** desde el enlace:
 
 ### APK para Android
-[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/8282ec40-a51a-4ebf-b414-61694f617015)
+[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen)](https://expo.dev/accounts/juanmoreno0726s-team/projects/colombia-dance/builds/eae98b73-ea10-421e-a763-d4b97cac8533)
 
 
 2. **Permite la instalación** desde fuentes desconocidas:
