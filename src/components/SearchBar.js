@@ -5,7 +5,7 @@ export const SearchBar = ({ value, onChangeText, placeholder = 'Buscar danza...'
     return (
         <View style={styles.container}>
             <Image 
-                source={require('../../assets/images/icons/search.png')} 
+                source={require('../../assets/images/icons/search.jpg')} 
                 style={styles.searchIcon}
                 resizeMode="contain"
             />
@@ -19,7 +19,7 @@ export const SearchBar = ({ value, onChangeText, placeholder = 'Buscar danza...'
             {value.length > 0 && (
                 <TouchableOpacity onPress={() => onChangeText('')} style={styles.clearButton}>
                     <Image 
-                        source={require('../../assets/images/icons/close.png')} 
+                        source={require('../../assets/images/icons/close.jpg')} 
                         style={styles.clearIcon}
                         resizeMode="contain"
                     />
@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
     clearIcon: {
         width: 20,
         height: 20,
-        tintColor: '#94A3B8',
+        tintColor: '#000000',
     },
 });

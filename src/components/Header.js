@@ -6,7 +6,7 @@ export const Header = ({ title = 'Colombia Dance' }) => {
         <View style={styles.headerContainer}>
             <View style={styles.headerContent}>
                 <Image 
-                    source={require('../../assets/images/colombia-map.png')} 
+                    source={require('../../assets/images/colombia-map.jpg')} 
                     style={styles.mapImage}
                     resizeMode="contain"
                 />

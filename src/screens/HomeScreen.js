@@ -7,6 +7,8 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
+// Importamos el SafeAreaView para proteger los bordes de la barra de estado
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from '../components/Header';
 import { DanceCard } from '../components/DanceCard';
 import { SearchBar } from '../components/SearchBar';
@@ -58,7 +60,8 @@ export const HomeScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
+        // Cambiamos el View externo por SafeAreaView para evitar que choque con la hora y la batería
+        <SafeAreaView style={styles.container}>
             <Header title=" Colombia Dance" />
 
             <View style={styles.content}>
@@ -133,14 +136,14 @@ export const HomeScreen = () => {
             <View style={styles.favCounter}>
                 <Text style={styles.favText}>❤️ {dances.filter(d => d.favorite).length}</Text>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F8FAFC',
+        backgroundColor: '#FFFFFF', // Ponemos el contenedor base blanco para que combine limpio con tu Header
     },
     loadingContainer: {
         flex: 1,
@@ -157,6 +160,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 20,
         paddingTop: 16,
+        backgroundColor: '#F8FAFC', // Mantenemos el fondo gris claro para el cuerpo de la app
     },
     statsContainer: {
         flexDirection: 'row',
@@ -212,7 +216,7 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
     },
     randomButton: {
-        backgroundColor: '#7287e6',
+        backgroundColor: '#7287e6', // Conservamos exactamente tu color de botón original
         borderRadius: 12,
         paddingVertical: 12,
         alignItems: 'center',
