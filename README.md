@@ -100,7 +100,8 @@ La aplicación contribuye a:
 
 2. **Clona el repositorio:**
 
-git clone https://github.com/tu-usuario/colombia-dance.git
+git clone https://github.com/juanmorenaso15/coombia-dance.git
+
 cd colombia-dance
 
 3. **Instala dependencias:**
